@@ -1,3 +1,4 @@
+// citations: https://github.com/jjfiv/CSC212Aquarium
 package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
@@ -56,8 +57,11 @@ public class Aquarium extends GFX {
 		DrawFish.facingRight(g, Color.green, fish2X, 300);
 
 		// What if we wanted this little fish to swim, too?
-		DrawFish.smallFacingLeft(g, Color.red, 200, 100);
+		DrawFish.smallFacingLeft(g, Color.red, fish2X, 100);
 
+		// New Fish is created
+		DrawFish.Fish(400, 200, Color.blue);
+		
 		// Draw our snail!
 		algorithm.draw(g);
 
