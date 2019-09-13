@@ -41,10 +41,13 @@ public class Aquarium extends GFX {
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
 	}
-
+	
 	int fish1X = getWidth() + 100;
 	int fish2X = getWidth() + 300;
 
+	// Create a new fish
+	Fish lP = new Fish(200, 200, Color.blue, false, false);
+	
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
@@ -59,8 +62,7 @@ public class Aquarium extends GFX {
 		// What if we wanted this little fish to swim, too?
 		DrawFish.smallFacingLeft(g, Color.red, fish2X, 100);
 
-		// New Fish is created
-		DrawFish.Fish(400, 200, Color.blue);
+		// New Fish is made in window
 		
 		// Draw our snail!
 		algorithm.draw(g);
