@@ -1,4 +1,5 @@
 // citations: https://github.com/jjfiv/CSC212Aquarium
+// https://www.youtube.com/watch?v=f4OzM1lov3g
 package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
@@ -41,12 +42,15 @@ public class Aquarium extends GFX {
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
 	}
+
 	
 	int fish1X = getWidth() + 100;
 	int fish2X = getWidth() + 300;
 
-	// Create a new fish
-	Fish lP = new Fish(200, 200, Color.blue, false, false);
+		Fish lP = new Fish(190, 100, Color.blue, false, true);
+		Fish Tl= new Fish(180, 150, Color.green, true, true);
+		Fish Eu= new Fish(200, 200, Color.yellow, false, false);
+		Fish LS= new Fish(300, 100, Color.gray, true, false);
 	
 	@Override
 	public void draw(Graphics2D g) {
@@ -61,8 +65,16 @@ public class Aquarium extends GFX {
 
 		// What if we wanted this little fish to swim, too?
 		DrawFish.smallFacingLeft(g, Color.red, fish2X, 100);
+		
+		//DrawFish.smallFacingRight(g,  lP.color, lP.x, lP.y);
+		
+			// Create a new fish
+		lP.Write(g);
+		Tl.Write(g);
+		Eu.Write(g);
+		LS.Write(g);
 
-		// New Fish is made in window
+		
 		
 		// Draw our snail!
 		algorithm.draw(g);
@@ -81,6 +93,7 @@ public class Aquarium extends GFX {
 		// is a very specific GFX, much like 7 can be stored in a variable of type int!
 		GFX app = new Aquarium();
 		app.start();
+		
 	}
 
 }
