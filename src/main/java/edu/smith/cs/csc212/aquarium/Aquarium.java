@@ -46,11 +46,12 @@ public class Aquarium extends GFX {
 	
 	int fish1X = getWidth() + 100;
 	int fish2X = getWidth() + 300;
+	int fish3X = getWidth() - 100;
 
-		Fish lP = new Fish(190, 100, Color.blue, false, true);
-		Fish Tl= new Fish(180, 150, Color.green, true, true);
-		Fish Eu= new Fish(200, 200, Color.yellow, false, false);
-		Fish LS= new Fish(300, 100, Color.gray, true, false);
+		Fish lP = new Fish(190, 100, Color.blue, false, true, 2);
+		Fish Tl= new Fish(180, 150, Color.green, true, true, 1);
+		Fish Eu= new Fish(200, 200, Color.yellow, false, false, 1);
+		Fish LS= new Fish(300, 100, Color.gray, true, false, 1);
 	
 	@Override
 	public void draw(Graphics2D g) {
@@ -61,7 +62,7 @@ public class Aquarium extends GFX {
 		// Draw the fish!
 		DrawFish.facingLeft(g, Color.yellow, fish1X, 200);
 		// Draw the confused fish!
-		DrawFish.facingRight(g, Color.green, fish2X, 300);
+		DrawFish.facingRight(g, Color.green, fish3X, 300);
 
 		// What if we wanted this little fish to swim, too?
 		DrawFish.smallFacingLeft(g, Color.red, fish2X, 100);
@@ -82,6 +83,7 @@ public class Aquarium extends GFX {
 		// Move the fish!
 		fish1X -= 1;
 		fish2X -= 2;
+		fish3X += 5;
 	}
 
 	public static void main(String[] args) {
