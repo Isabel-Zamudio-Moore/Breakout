@@ -106,6 +106,7 @@ public class Fish {
 			
 			if ((Math.abs(this.xdest-this.x)< 10) && (Math.abs(this.ydest-this.y)< 10)) {
 				randDest();
+				
 			}
 		}
 		
