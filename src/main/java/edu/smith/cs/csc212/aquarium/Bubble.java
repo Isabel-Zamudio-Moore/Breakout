@@ -6,9 +6,13 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import me.jjfoley.gfx.GFX;
+
 import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 
 /** 
  * Class for the Bubble Array
@@ -19,50 +23,52 @@ public class Bubble {
 	int y0;
 	int radius;
 	Color color;
+	int trx;
+	int trwidth;
+	int twidth;
+	int theight;
+	Random random = new Random();
+
+
 	
-	
-	public Bubble(Graphics2D b) {
+	public Bubble(int width, int height) {
 		this.speed=speed;
 		this.x0= x0;
 		this.y0= y0;
 		this.radius= radius;
-		this.color= color; 
-	}		
-	
-	public void BubbleArray(Graphics2D b) {
-		Random rand= new Random();
+		this.color= color;
+		// for treasure
+		this.trx=trx;
+		this.trwidth=trwidth;
+		this.trx=500;
+		this.trwidth=200;
+		// for tank
+		this.twidth=width;
+		this.theight=height;
+		// Calculate random center points & radiuses
 		
-		// Create a list of 10 bubbles and draw
-		List [] Bubbles = new ArrayList[10];
-		for (int i=0; i<Bubbles.size(); i++) {
-			// Calculate random center points & radiuses
-			this.x0= rand.nextInt(200);
-			this.y0= rand.nextInt(200);
-			this.radius= rand.nextInt(20);
-			Shape Bubble = new Ellipse2D.Double(this.x0, this.y0, this.radius, this.radius);
-			b.setColor(Color.cyan);
-			b.fill(Bubble);
-			drawB(b);
-			}
-		
-		//for (Bubbles:Bubbles) {
-			//Bubble.drawB(b); }
-		}
+	}
 		
 		// Create Bubble
 	//draw bubbles
-	public void drawB(Graphics2D g, ArrayList t) {
-		g.setColor(this.color);
-		for (int i=0; i< Bubbles.length()); i++) {
-			//Bubbles[i].draw(g);
-		}
-		//g.fill(Bubble);
-		//g.draw(Bubble);
+	public void Write(Graphics2D g, int radius, int x0, int y0) {	
+		// Create random parameters per bubble
+
+		this.radius=radius;
+		this.x0=x0;
+		this.y0=y0;
+		// Create bubble shape
+		Shape Bubble = new Ellipse2D.Double(this.x0, this.y0, this.radius, this.radius);
+		g.setColor(Color.magenta);
+		g.fill(Bubble);
+		g.draw(Bubble);
+		drift();
 	}
 		
 	// Bubble drift upwards
 		public void drift() {
 			this.speed-=2;
+			this.y0-=this.speed;
 		}
 			
 			}

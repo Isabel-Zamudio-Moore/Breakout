@@ -38,32 +38,34 @@ public class Interactions {
 		this.x0f= x0f;
 		this.y0f= y0f;
 		this.radiusf= radiusf;
-	
-		
 	}		
 		
 	
 	public void MonsterFish (Graphics2D d){
 		// Create Monster Fish
-		this.xr=50;
-		this.yr=50;
+		this.xr=100;
+		this.yr=100;
 		this.radiusr=10;
-		Shape body = new Ellipse2D.Double( this.xr, this.yr, this.radiusr, this.radiusr*2);
-		Shape eyes = new Ellipse2D.Double(this.xr-20,  this.yr+5,  this.radiusr*(1/8), this.radiusr*(1/8));
-		
-	d.fill(body);
-	d.setColor(Color.cyan);
+	
+	drawMonsterF(d);
 	}
 	
 
 	public void drawMonsterF(Graphics2D d) {
+		Shape body = new Ellipse2D.Double( this.xr, this.yr, this.radiusr, this.radiusr*2);
+		Shape eyes = new Ellipse2D.Double(this.xr-20,  this.yr+5,  this.radiusr*(1/8), this.radiusr*(1/8));
+		d.fill(body);
+		d.setColor(Color.cyan);
+		d.draw(body);
+		d.setColor(Color.yellow);
+		d.draw(eyes);
 		
 	}
 	
 	public void PreyFish(Graphics2D d) {
 	//Create array of fish
 	List PreyFish[] = new ArrayList[20];
-	for (int i=0; i< PreyFish.length; i++) {
+		for (int i=0; i< PreyFish.length; i++) {
 		}
 	}
 

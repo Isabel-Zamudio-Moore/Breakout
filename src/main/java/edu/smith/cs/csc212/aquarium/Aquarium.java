@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import me.jjfoley.gfx.GFX;
 
@@ -35,7 +36,12 @@ public class Aquarium extends GFX {
 	 * Put a snail on the top of the tank.
 	 */
 	Snail algorithm = new Snail(177, Snail.HEIGHT + 1, "top", WIDTH, HEIGHT);
+	
+	public Random random= new Random();
 
+	// Create width and center for treasure chest which is used in two classes
+	public int trx=500;
+	public int trwidth=200;
 	/**
 	 * This is a constructor, code that runs when we make a new Aquarium.
 	 */
@@ -43,6 +49,7 @@ public class Aquarium extends GFX {
 		// Here we ask GFX to make our window of size WIDTH and HEIGHT.
 		// Don't change this here, edit the variables instead.
 		super(WIDTH, HEIGHT);
+		
 	}
 
 	// Get initial positions of fish that were initially in starter code
@@ -60,6 +67,7 @@ public class Aquarium extends GFX {
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
 		//TankChange(tank.Color);
+		//Color color= colorGet(WIDTH, HEIGHT);
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
@@ -71,7 +79,6 @@ public class Aquarium extends GFX {
 		// What if we wanted this little fish to swim, too?
 		DrawFish.smallFacingLeft(g, Color.red, fish2X, 100);
 		
-		Bubbles.Writeb(g);
 		//DrawFish.smallFacingRight(g,  lP.color, lP.x, lP.y);
 		
 		// Create a new fish
@@ -80,22 +87,56 @@ public class Aquarium extends GFX {
 		Eu.Write(g);
 		LS.Write(g);
 
-		
+		Treasure Tr= new Treasure(g, HEIGHT, WIDTH);
+		Tr.Write(g, HEIGHT,WIDTH);
+
 		// Draw our snail!
 		algorithm.draw(g);
 
+				
+		Sub submarine=new Sub(g, WIDTH, HEIGHT);
+		submarine.Write(g);
 		// Move the fish!
 		fish1X -= 1;
 		fish2X -= 2;
 		fish3X += 5;
 		
-		// Create an Array of Rocks and have them drawn
-		List [] Rocks = new ArrayList[10];
-		for (int i=0; i< Rocks.length; i++) {
-			Rocks Rock= new Rocks(g, WIDTH, HEIGHT);
-			//g.Write(Rocks);
+		
+		// Create a array of 10 bubbles and draw
+		Bubble [] Bubbles = new Bubble[10];
+		for (int i=0; i<Bubbles.length; i++) {;
+			Bubbles[i]= new Bubble(WIDTH, HEIGHT);
 		}
+
+		
+		Interactions INTERACT= new Interactions();
+			
+		// Draw the bubbles
+		for (Bubble Bubble: Bubbles) {
+			// Calculate random center points & radiuses
+			int Bradius = random.nextInt(20);
+			int x0=random.nextInt(trwidth);
+			int y0=random.nextInt(HEIGHT)-120;
+			if ((x0 < -100) | (x0 > trwidth)){
+			y0=-1;}
+			Bubble.Write(g, Bradius, x0, y0);
+			
+			}
+		
+		
+		FeedFishSoon Sw=new FeedFishSoon(g, WIDTH, HEIGHT, lP);
+		Sw.Write(g, WIDTH, HEIGHT);
+		
+
+		
+		//Bubble.Write(g);
+		// Create an Array of Rocks and have them drawn
+		//List [] Rocks = new ArrayList[10];
+		//for (int n=0; n< Rocks.length; i++) {
+			//Rocks Rock= new Rocks(g, WIDTH, HEIGHT);
+			//g.Write(Rocks);
 	}
+	
 
 	public static void main(String[] args) {
 		// Uncomment this to make it go slower!

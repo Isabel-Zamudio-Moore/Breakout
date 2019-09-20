@@ -73,7 +73,7 @@ public class Fish {
 		}
 	}
 	
-	// Create a Random Destination dependng on conditions
+	// Create a Random Destination depending on conditions
 	public void randDestx() {
 		// Initialize Random
 		Random random=  new Random();
