@@ -23,6 +23,14 @@ public class Snail {
 	 * The position of the Snail; y-coordinate.
 	 */
 	public int y;
+	
+	public int TankWidth;
+	
+	public int TankHeight;
+	
+	public int yOriginal;
+
+
 
 	/**
 	 * Create a snail at (sx, sy) with position s.
@@ -31,10 +39,13 @@ public class Snail {
 	 * @param sy - y coordinate
 	 * @param s  - the "positioning" of the Snail
 	 */
-	public Snail(int sx, int sy, String s) {
+	public Snail(int sx, int sy, String s, int TankWidth, int TankHeight) {
 		this.setSide(s);
 		this.x = sx;
 		this.y = sy;
+		this.TankWidth= TankWidth;
+		this.TankHeight= TankHeight;
+		this.yOriginal= y;
 	}
 
 	/**
@@ -51,8 +62,45 @@ public class Snail {
 	 */
 	public void move() {
 
+		if ((x<TankWidth) && (yOriginal==y)) {
+			this.x+=2;
+		//} else if ((TankWidth-100== x) && (-yOriginal >y)){
+			//this.x+=0;
+			//this.y-=2;
+		} else if ((x>= TankWidth) && (yOriginal<=y) && (this.TankHeight>y)){
+			this.x= this.x;
+			this.y+= 2;
+		} else if ((x >= 50) ) {
+			this.y= this.y;
+			this.x-= 2;
+		} else {
+			this.x=this.x;
+			this.y-=2;
+
+	}
+	}		
+	public void move2() {
+	if ((TankWidth-100> x) ){
+		this.x+=0;
+		this.y-=2;
 	}
 
+	
+	
+	
+	}
+
+	public boolean RightEdge() {
+		if ((this.x==TankWidth-50) && (this.y<=yOriginal) && (this.y!=HEIGHT)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
+	
 	/**
 	 * Draw the snail at the current setup.
 	 * 
@@ -68,7 +116,7 @@ public class Snail {
 		// This is kind of tricky to wrap your head around, so I gave it to you.
 		Graphics2D position = (Graphics2D) g.create();
 		position.translate(x, y);
-
+		
 		// Note that I need to compare strings with ".equals" this is a Java weirdness.
 		if ("bottom".equals(this.direction)) {
 			drawSnail(position, Color.red, Color.white, Color.black);

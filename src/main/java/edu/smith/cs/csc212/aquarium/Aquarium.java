@@ -4,6 +4,8 @@ package edu.smith.cs.csc212.aquarium;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.jjfoley.gfx.GFX;
 
@@ -32,7 +34,7 @@ public class Aquarium extends GFX {
 	/**
 	 * Put a snail on the top of the tank.
 	 */
-	Snail algorithm = new Snail(177, Snail.HEIGHT + 1, "top");
+	Snail algorithm = new Snail(177, Snail.HEIGHT + 1, "top", WIDTH, HEIGHT);
 
 	/**
 	 * This is a constructor, code that runs when we make a new Aquarium.
@@ -43,11 +45,12 @@ public class Aquarium extends GFX {
 		super(WIDTH, HEIGHT);
 	}
 
-	
+	// Get initial positions of fish that were initially in starter code
 	int fish1X = getWidth() + 100;
 	int fish2X = getWidth() + 300;
 	int fish3X = getWidth() - 100;
 
+		// Create fish for fish class
 		Fish lP = new Fish(190, 100, Color.blue, false, true, 2);
 		Fish Tl= new Fish(180, 150, Color.green, true, true, 1);
 		Fish Eu= new Fish(200, 200, Color.yellow, false, false, 1);
@@ -56,6 +59,7 @@ public class Aquarium extends GFX {
 	@Override
 	public void draw(Graphics2D g) {
 		// Draw the "ocean" background.
+		//TankChange(tank.Color);
 		g.setColor(Color.blue);
 		g.fillRect(0, 0, getWidth(), getHeight());
 
@@ -67,15 +71,15 @@ public class Aquarium extends GFX {
 		// What if we wanted this little fish to swim, too?
 		DrawFish.smallFacingLeft(g, Color.red, fish2X, 100);
 		
+		Bubbles.Writeb(g);
 		//DrawFish.smallFacingRight(g,  lP.color, lP.x, lP.y);
 		
-			// Create a new fish
+		// Create a new fish
 		lP.Write(g);
 		Tl.Write(g);
 		Eu.Write(g);
 		LS.Write(g);
 
-		
 		
 		// Draw our snail!
 		algorithm.draw(g);
@@ -84,6 +88,13 @@ public class Aquarium extends GFX {
 		fish1X -= 1;
 		fish2X -= 2;
 		fish3X += 5;
+		
+		// Create an Array of Rocks and have them drawn
+		List [] Rocks = new ArrayList[10];
+		for (int i=0; i< Rocks.length; i++) {
+			Rocks Rock= new Rocks(g, WIDTH, HEIGHT);
+			//g.Write(Rocks);
+		}
 	}
 
 	public static void main(String[] args) {
